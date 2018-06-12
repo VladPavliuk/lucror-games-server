@@ -1,22 +1,11 @@
 using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using FluentValidation.AspNetCore;
-using AutoMapper;
-using Server.Auth;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Server.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Net;
-using Server.Helpers;
-using Microsoft.AspNetCore.Diagnostics;
-using Server.Extensions;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
 
 namespace Server.Auth
 {

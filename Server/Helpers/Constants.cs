@@ -1,4 +1,4 @@
-namespace mvc_auth.Helpers
+namespace Server.Helpers
 {
     public static class Constants
     {

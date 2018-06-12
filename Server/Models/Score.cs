@@ -8,6 +8,7 @@ namespace Server.Models
     public class Score
     {
         public long Id { get; set; }
+        public ApplicationUser User { get; set; }
         public decimal Value { get; set; }
     }
 }

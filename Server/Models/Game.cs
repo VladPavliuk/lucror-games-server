@@ -9,8 +9,8 @@ namespace Server.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public string url { get; set; }
-        public bool has_levels { get; set; }
-        public bool has_difficulties { get; set; }
+        public string Url { get; set; }
+        public bool Has_levels { get; set; }
+        public bool Has_difficulties { get; set; }
     }
 }

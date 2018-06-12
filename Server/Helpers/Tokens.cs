@@ -5,7 +5,7 @@ using Server.Auth;
 using Server.Models;
 using Newtonsoft.Json;
 
-namespace mvc_auth.Helpers
+namespace Server.Helpers
 {
     public class Tokens
     {
