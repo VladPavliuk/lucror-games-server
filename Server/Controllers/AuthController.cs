@@ -16,12 +16,19 @@ namespace mvc_auth.Controllers
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
 
-        public AuthController(UserManager<ApplicationUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        public AuthController(
+            UserManager<ApplicationUser> userManager,
+            IJwtFactory jwtFactory,
+            SignInManager<ApplicationUser> signInManager,
+            IOptions<JwtIssuerOptions> jwtOptions
+        )
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _jwtFactory = jwtFactory;
             _jwtOptions = jwtOptions.Value;
         }
@@ -41,16 +48,24 @@ namespace mvc_auth.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
             }
 
-          var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.Email, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.Email, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
 
-          JObject jwtObject = JObject.Parse(jwt);
+            JObject jwtObject = JObject.Parse(jwt);
 
-          ApplicationUser user = await _userManager.FindByNameAsync(identity.Name);
-          var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+            ApplicationUser user = await _userManager.FindByNameAsync(identity.Name);
+            var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
 
-          jwtObject.Add("is_admin", isAdmin);
+            jwtObject.Add("is_admin", isAdmin);
 
-          return new OkObjectResult(JsonConvert.SerializeObject(jwtObject));
+            return new OkObjectResult(JsonConvert.SerializeObject(jwtObject));
+        }
+
+        [HttpPost("logout")]
+        // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok(HttpContext.User.Identity.IsAuthenticated);
         }
 
         [HttpGet("is-admin")]
