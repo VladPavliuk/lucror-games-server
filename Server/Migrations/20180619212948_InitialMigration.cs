@@ -57,10 +57,10 @@ namespace Server.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
-                    url = table.Column<string>(nullable: true),
-                    has_levels = table.Column<bool>(nullable: false),
-                    has_difficulties = table.Column<bool>(nullable: false)
+                    Title = table.Column<string>(nullable: false),
+                    Url = table.Column<string>(nullable: false),
+                    HasLevels = table.Column<bool>(nullable: false),
+                    HasDifficulties = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

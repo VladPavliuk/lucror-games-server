@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Server.Auth;
 using Server.Helpers;
 using Server.Models;
+using Server.Seeders;
 using Server.Services;
 
 namespace Server
@@ -39,12 +40,13 @@ namespace Server
         {
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
-                options.UseSqlServer(@"Data Source=(localdb)\Eleks; Initial Catalog=Default")
-            );
+            services.AddDbContext<ApplicationDbContext>(options => {
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer("Data Source=(localdb)\\Eleks; Initial Catalog=Default");
+            });
 
             services.AddTransient<IJwtFactory, JwtFactory>();
+            services.AddTransient<GamesInitializare>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -118,8 +120,11 @@ namespace Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env,
+            GamesInitializare gamesInitializare
+        ) {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -141,6 +146,8 @@ namespace Server
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            gamesInitializare.Seed().Wait();
         }
     }
 }

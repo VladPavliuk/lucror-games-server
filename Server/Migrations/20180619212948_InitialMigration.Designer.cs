@@ -10,7 +10,7 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180612131935_InitialMigration")]
+    [Migration("20180619212948_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,13 +196,15 @@ namespace Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Title");
+                    b.Property<bool>("HasDifficulties");
 
-                    b.Property<bool>("has_difficulties");
+                    b.Property<bool>("HasLevels");
 
-                    b.Property<bool>("has_levels");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
-                    b.Property<string>("url");
+                    b.Property<string>("Url")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
