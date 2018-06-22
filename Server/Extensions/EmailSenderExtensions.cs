@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Server.Services;
+using LucrorGames.Services;
 
-namespace Server.Services
+namespace LucrorGames.Services
 {
     public static class EmailSenderExtensions
     {

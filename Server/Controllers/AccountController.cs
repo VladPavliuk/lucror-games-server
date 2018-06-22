@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
-using Server.Models;
+using LucrorGames.Models;
 
-namespace Server.Controllers
+namespace LucrorGames.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

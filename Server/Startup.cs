@@ -15,13 +15,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Server.Auth;
-using Server.Helpers;
-using Server.Models;
-using Server.Seeders;
-using Server.Services;
+using LucrorGames.Auth;
+using LucrorGames.Helpers;
+using LucrorGames.Models;
+using LucrorGames.Seeders;
+using LucrorGames.Services;
 
-namespace Server
+namespace LucrorGames
 {
     public class Startup
     {

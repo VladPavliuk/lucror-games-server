@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Server.Migrations
+namespace LucrorGames.Migrations
 {
     public partial class InitialMigration : Migration
     {

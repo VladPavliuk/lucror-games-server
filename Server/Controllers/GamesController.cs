@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Server.Models;
+using LucrorGames.Models;
 
-namespace Server.Controllers
+namespace LucrorGames.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

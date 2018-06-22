@@ -1,13 +1,13 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Server.Auth;
-using Server.Helpers;
-using Server.Models;
+using LucrorGames.Auth;
+using LucrorGames.Helpers;
+using LucrorGames.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Server.Models.AccountViewModels;
+using LucrorGames.Models.AccountViewModels;
 using Newtonsoft.Json.Linq;
 
 namespace mvc_auth.Controllers

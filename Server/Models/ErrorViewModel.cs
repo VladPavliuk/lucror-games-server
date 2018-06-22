@@ -1,6 +1,6 @@
 using System;
 
-namespace Server.Models
+namespace LucrorGames.Models
 {
     public class ErrorViewModel
     {

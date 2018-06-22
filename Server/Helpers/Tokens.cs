@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Server.Auth;
-using Server.Models;
+using LucrorGames.Auth;
+using LucrorGames.Models;
 using Newtonsoft.Json;
 
-namespace Server.Helpers
+namespace LucrorGames.Helpers
 {
     public class Tokens
     {

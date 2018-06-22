@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Server.Models;
+using LucrorGames.Models;
 
-namespace Server.Models
+namespace LucrorGames.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -25,6 +25,6 @@ namespace Server.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Server.Models.Score> Score { get; set; }
+        public DbSet<LucrorGames.Models.Score> Score { get; set; }
     }
 }

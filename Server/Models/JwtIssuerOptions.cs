@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Server.Models
+namespace LucrorGames.Models
 {
     public class JwtIssuerOptions
     {

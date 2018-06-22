@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models.AccountViewModels
+namespace LucrorGames.Models.AccountViewModels
 {
     public class LoginWith2faViewModel
     {

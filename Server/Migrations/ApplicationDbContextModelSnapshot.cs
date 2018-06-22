@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Server.Models;
+using LucrorGames.Models;
 
-namespace Server.Migrations
+namespace LucrorGames.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -129,7 +129,7 @@ namespace Server.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Server.Models.ApplicationUser", b =>
+            modelBuilder.Entity("LucrorGames.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -188,7 +188,7 @@ namespace Server.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Server.Models.Game", b =>
+            modelBuilder.Entity("LucrorGames.Models.Game", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -219,7 +219,7 @@ namespace Server.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Server.Models.ApplicationUser")
+                    b.HasOne("LucrorGames.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -227,7 +227,7 @@ namespace Server.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Server.Models.ApplicationUser")
+                    b.HasOne("LucrorGames.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -240,7 +240,7 @@ namespace Server.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Server.Models.ApplicationUser")
+                    b.HasOne("LucrorGames.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -248,7 +248,7 @@ namespace Server.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Server.Models.ApplicationUser")
+                    b.HasOne("LucrorGames.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

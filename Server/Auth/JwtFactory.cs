@@ -3,11 +3,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Server.Models;
+using LucrorGames.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 
-namespace Server.Auth
+namespace LucrorGames.Auth
 {
     public class JwtFactory : IJwtFactory
     {

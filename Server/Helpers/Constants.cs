@@ -1,4 +1,4 @@
-namespace Server.Helpers
+namespace LucrorGames.Helpers
 {
     public static class Constants
     {

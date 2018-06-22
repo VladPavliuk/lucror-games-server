@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Server.Helpers
+namespace LucrorGames.Helpers
 { 
     public static class Errors
     {

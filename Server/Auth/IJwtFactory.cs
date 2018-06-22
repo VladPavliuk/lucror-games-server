@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Server.Auth
+namespace LucrorGames.Auth
 {
     public interface IJwtFactory
     {

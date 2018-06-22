@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 
-namespace Server
+namespace LucrorGames
 {
     public class Program
     {
