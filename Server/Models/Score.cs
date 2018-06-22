@@ -9,6 +9,7 @@ namespace Server.Models
     {
         public long Id { get; set; }
         public ApplicationUser User { get; set; }
+        public Game Game { get; set; }
         public decimal Value { get; set; }
     }
 }

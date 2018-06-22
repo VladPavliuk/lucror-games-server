@@ -10,7 +10,7 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180619212948_InitialMigration")]
+    [Migration("20180620132247_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
