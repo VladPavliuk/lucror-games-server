@@ -11,6 +11,12 @@
     <Compile Remove="Migrations\20180619212834_ChangeGame.Designer.cs" />
     <Compile Remove="Migrations\20180619212948_InitialMigration.cs" />
     <Compile Remove="Migrations\20180619212948_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20180620132247_InitialMigration.cs" />
+    <Compile Remove="Migrations\20180620132247_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20180625155314_AddTokenFieldToScore.cs" />
+    <Compile Remove="Migrations\20180625155314_AddTokenFieldToScore.Designer.cs" />
+    <Compile Remove="Migrations\20180625155530_InitialMIgration.cs" />
+    <Compile Remove="Migrations\20180625155530_InitialMIgration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,5 +30,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
   </ItemGroup>
-
 </Project>

@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration.Binder;
 using LucrorGames.Auth;
 using LucrorGames.Helpers;
 using LucrorGames.Models;
@@ -40,9 +41,10 @@ namespace LucrorGames
         {
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
-            services.AddDbContext<ApplicationDbContext>(options => {
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer("Data Source=(localdb)\\Eleks; Initial Catalog=Default");
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                //options.UseSqlServer("Data Source=(localdb)\\Eleks; Initial Catalog=Default");
             });
 
             services.AddTransient<IJwtFactory, JwtFactory>();

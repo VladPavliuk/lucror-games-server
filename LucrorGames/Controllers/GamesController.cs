@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LucrorGames.Models;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LucrorGames.Controllers
 {
@@ -14,10 +17,15 @@ namespace LucrorGames.Controllers
     public class GamesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public GamesController(ApplicationDbContext context)
+        public GamesController(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager
+        )
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: api/Games
@@ -44,6 +52,44 @@ namespace LucrorGames.Controllers
             }
 
             return Ok(game);
+        }
+
+        // GET: api/Games/5
+        [HttpGet("play/{id}")]
+        [Authorize]
+        public async Task<IActionResult> PlayGame([FromRoute] long id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Game.FindAsync(id);
+
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            Random random = new Random();
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            StringBuilder result = new StringBuilder(50);
+            for (int i = 0; i < 50; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            var name = User.Identity.Name;
+            ApplicationUser user = await _userManager.FindByNameAsync(name);
+            _context.Score.Add(new Score()
+            {
+                Token = result.ToString(),
+                User = user,
+                Game = game,
+                Value = 0
+            });
+            await _context.SaveChangesAsync();
+
+            return new JsonResult(new { game = game, token = result.ToString() });
         }
 
         // PUT: api/Games/5

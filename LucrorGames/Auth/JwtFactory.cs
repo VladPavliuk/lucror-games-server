@@ -26,23 +26,12 @@ namespace LucrorGames.Auth
 
         public async Task<string> GenerateEncodedToken(string userName, ClaimsIdentity identity)
         {
-            ApplicationUser user = await _userManager.FindByNameAsync(userName);
-            var claims = await _userManager.IsInRoleAsync(user, "Admin") 
-            ?
-            new[] {
+            var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, userName),
                 new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-                new Claim("role", "Admin"),
-                identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol),
-                identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Id)
-            }
-            :
-            new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, userName),
-                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-            //  new Claim("role", "Admin"),
+                new Claim(JwtRegisteredClaimNames.UniqueName, identity.Name),
+
                 identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol),
                 identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Id)
             };
