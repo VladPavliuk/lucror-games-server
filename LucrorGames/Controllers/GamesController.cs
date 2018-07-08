@@ -55,9 +55,9 @@ namespace LucrorGames.Controllers
         }
 
         // GET: api/Games/5
-        [HttpGet("play/{id}")]
+        [HttpPost("{id}/open-session")]
         [Authorize]
-        public async Task<IActionResult> PlayGame([FromRoute] long id)
+        public async Task<IActionResult> OpenSession([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
@@ -90,6 +90,29 @@ namespace LucrorGames.Controllers
             await _context.SaveChangesAsync();
 
             return new JsonResult(new { game = game, token = result.ToString() });
+        }
+
+        [HttpPost("close-session/{token}/{score}")]
+        [Authorize]
+        public IActionResult CloseSession([FromRoute] string token, [FromRoute] long score)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var scoreRecord = _context.Score.Where(item => item.Token == token).FirstOrDefault();
+
+            if (scoreRecord == null)
+            {
+                return NotFound();
+            }
+
+            scoreRecord.Value = score;
+
+            _context.SaveChanges();
+
+            return Ok();
         }
 
         // PUT: api/Games/5
