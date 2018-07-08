@@ -115,18 +115,19 @@ namespace LucrorGames
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-        
-            // services.AddSingleton<IAuthorizationHandler, AdminHandler>();
 
+            // services.AddSingleton<IAuthorizationHandler, AdminHandler>();
+            services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
-            IApplicationBuilder app, 
+            IApplicationBuilder app,
             IHostingEnvironment env,
             GamesInitializare gamesInitializare
-        ) {
+        )
+        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -142,9 +143,17 @@ namespace LucrorGames
                // 	.AllowAnyMethod()
                // );
                builder.WithOrigins("http://localhost:8080")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
                );
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<GameSessionHub>("/chatHub");
+            });
+
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
