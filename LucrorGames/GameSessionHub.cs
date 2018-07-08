@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using System.Threading.Tasks;
 
 namespace LucrorGames
 {
     public class GameSessionHub : Hub
     {
-        public async Task OpenSession(SessionData sessionData)
-        {
-            await Clients.All.SendAsync("CloseSession", sessionData);
-        }
+        public async Task CloseSession(SessionData sessionData) => await Clients.Group(sessionData.Room).SendAsync("CloseSession", sessionData);
+        public async Task JoinRoom(string roomName) => await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
     }
 
     public class SessionData
