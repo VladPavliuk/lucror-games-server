@@ -147,6 +147,7 @@ namespace LucrorGames
                );
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
 
             gamesInitializare.Seed().Wait();

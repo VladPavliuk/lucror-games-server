@@ -33,7 +33,8 @@ namespace LucrorGames.Auth
                 new Claim(JwtRegisteredClaimNames.UniqueName, identity.Name),
 
                 identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol),
-                identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Id)
+                identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Id),   
+                identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.ImagePath)
             };
 
             // Create the JWT security token and encode it.
@@ -55,7 +56,8 @@ namespace LucrorGames.Auth
             return new ClaimsIdentity(new GenericIdentity(userName, "Token"), new[]
             {
                 new Claim(Helpers.Constants.Strings.JwtClaimIdentifiers.Id, id),
-                new Claim(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol, Helpers.Constants.Strings.JwtClaims.ApiAccess)
+                new Claim(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol, Helpers.Constants.Strings.JwtClaims.ApiAccess),
+                new Claim(Helpers.Constants.Strings.JwtClaimIdentifiers.ImagePath, Helpers.Constants.Strings.JwtClaims.ApiAccess)
             });
         }
 

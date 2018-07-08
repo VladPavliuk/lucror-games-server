@@ -6,7 +6,9 @@ namespace LucrorGames.Helpers
         {
             public static class JwtClaimIdentifiers
             {
-                public const string Rol = "rol", Id = "id";
+                public const string Rol = "rol", 
+                    Id = "id",
+                    ImagePath = "imagePath";
             }
 
             public static class JwtClaims
