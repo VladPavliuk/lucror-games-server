@@ -30,9 +30,20 @@ namespace LucrorGames.Controllers
 
         // GET: api/Games
         [HttpGet]
-        public IEnumerable<Game> GetGame()
+        public IEnumerable<Object> GetGame()
         {
-            return _context.Game;
+            return from game in _context.Game
+                   select new
+                   {
+                       id = game.Id,
+                       title = game.Title,
+                       url = game.Url,
+                       score = (
+                        from score1 in _context.Score
+                        where game.Id == score1.Game.Id
+                        select score1.Value
+                   ).Max()
+                   };
         }
 
         // GET: api/Games/5

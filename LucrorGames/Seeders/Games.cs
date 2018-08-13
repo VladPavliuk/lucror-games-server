@@ -15,7 +15,11 @@ namespace LucrorGames.Seeders
             new Game()
             {
                 Title = "Ping-Pong",
-                Url = "https://ping-pong-js-game.herokuapp.com"
+                Url = "http://localhost:3000"
+            },
+            new Game() {
+                Title = "Snake",
+                Url = "http://localhost:3001"
             }
         };
 
